@@ -26,6 +26,10 @@ The server support makes it simple to add OAuth support to any [Ring](http://git
                                    "http://twitter.com/oauth/authorize"
                                    :hmac-sha1))
 
+;; Create a file test/oauth/twitter_keys.clj that contains the consumer key and secret you obtained above
+(def consumer-key "blah")
+(def consumer-secret "itsasecret")
+
 ;; Fetch a request token that a OAuth User may authorize
 ;; 
 ;; If you are using OAuth with a desktop application, a callback URI
