@@ -13,7 +13,7 @@ The server support makes it simple to add OAuth support to any [Ring](http://git
 
 # Running Tests #
 
-;; Create a file test/oauth/twitter_keys.clj that contains the consumer key and secret you obtained above
+Create a file test/oauth/twitter_keys.clj that contains the consumer key and secret you obtained from http://twitter.com/oauth_clients/new
 
 ``` clojure
 (def consumer-key "blah")
