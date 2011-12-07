@@ -263,3 +263,16 @@
   (is (= (sig/url-form-encode {:hello "there"}) "hello=there"))
   (is (= (sig/url-form-encode {:hello "there" :name "Bill Smith" }) "hello=there&name=Bill%20Smith")))
 
+(deftest
+    #^{:doc "normalizing the URL"}
+  normalize-url
+  (let [normalized "http://example.com/resource"]
+    (is (= normalized (sig/normalize "http://example.com/resource")))
+    (is (= normalized (sig/normalize "HTTP://Example.com/resource")))
+    (is (= normalized (sig/normalize "http://example.com:80/resource")))
+    (is (= normalized (sig/normalize "http://example.com/resource?query=foo&bar=baz")))
+    (is (= normalized (sig/normalize "http://example.com:80/resource?query=foo&bar=baz")))
+    (is (= normalized (sig/normalize "http://example.com:80/resource#fragment")))
+    (is (= "http://example.com:99/resource" (sig/normalize "http://example.com:99/resource")))
+    (is (= "https://example.com/resource" (sig/normalize "https://example.com:443/resource")))
+    (is (= "https://example.com:99/resource" (sig/normalize "https://example.com:99/resource")))))
