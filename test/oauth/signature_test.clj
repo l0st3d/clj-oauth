@@ -42,19 +42,6 @@
                            :size "original"})
          "GET&http%3A%2F%2Fphotos.example.net%2Fphotos&file%3Dvacation.jpg%26oauth_consumer_key%3Ddpf43f3p2l4k3l03%26oauth_nonce%3Dkllo9940pd9333jh%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D1191242096%26oauth_token%3Dnnch734d00sl2jdk%26oauth_version%3D1.0%26size%3Doriginal"))
 
-  ;; check that appending params to the URL query string still agrees with the hueniverse tool
-  (is (= (sig/base-string "GET"
-                          "http://abc.com/def?g=h"
-                          {:key "CONSUMERKEY"
-                           :secret "CONSUMERSECRET"
-                           :signature-method :hmac-sha1}
-                          {:token "TOKEN"
-                           :secret "TOKENSECRET"}
-                          {:oauth_timestamp "123456789"
-                           :oauth_nonce "blah"
-                           :i "j"})
-         "GET&http%3A%2F%2Fabc.com%2Fdef%3Fg%3Dh&i%3Dj%26oauth_consumer_key%3DCONSUMERKEY%26oauth_nonce%3Dblah%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D123456789%26oauth_token%3DTOKEN%26oauth_version%3D1.0"))
-  
   (is (= (sig/base-string "POST"
                           "https://api.twitter.com/oauth/request_token"
                           {:oauth_callback "http://localhost:3005/the_dance/process_callback?service_provider_id=11"
